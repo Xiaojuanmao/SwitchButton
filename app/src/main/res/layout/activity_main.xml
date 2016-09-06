@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,13 +7,15 @@
     tools:context="feel.life.wonderful.switchbutton.MainActivity">
 
     <feel.life.wonderful.library_switchbutton.SwitchButton
-        app:switchButtonBgColor="@color/color_f85b50"
-        app:switchButtonCircleColor="@color/color_82aeff"
+        android:layout_width="50dp"
+        android:layout_height="25dp"
+        android:layout_centerInParent="true"
+        app:switchButtonBgColorOpened="@color/color_4f6ba5"
+        app:switchButtonBgColorClosed="@color/color_4f6ba5"
+        app:switchButtonBgHeight="25dp"
+        app:switchButtonBgWidth="50dp"
+        app:switchButtonCircleColor="@android:color/white"
         app:switchButtonCircleRadius="10dp"
-        app:switchButtonCircleShadowRadius="2dp"
-        app:switchButtonBgWidth="40dp"
-        app:switchButtonBgHeight="30dp"
-        android:layout_width="40dp"
-        android:layout_height="30dp" />
+        app:switchButtonCircleShadowRadius="2dp" />
 
 </RelativeLayout>

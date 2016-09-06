@@ -2,7 +2,8 @@
 <resources>
     <declare-styleable name="SwitchButton">
         <!--背景颜色-->
-        <attr name="switchButtonBgColor" format="color|reference"/>
+        <attr name="switchButtonBgColorOpened" format="color|reference"/>
+        <attr name="switchButtonBgColorClosed" format="color|reference"/>
         <!--圆圈颜色-->
         <attr name="switchButtonCircleColor" format="color|reference"/>
         <!--阴影大小-->
