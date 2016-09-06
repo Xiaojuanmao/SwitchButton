@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="SwitchButton">
-
+        <!--背景颜色-->
+        <attr name="switchButtonBgColor" format="color|reference"/>
+        <!--圆圈颜色-->
+        <attr name="switchButtonCircleColor" format="color|reference"/>
+        <!--阴影大小-->
+        <attr name="switchButtonCircleShadowRadius" format="dimension"/>
+        <!--圆圈大小-->
+        <attr name="switchButtonCircleRadius" format="dimension"/>
+        <!--背景宽度-->
+        <attr name="switchButtonBgWidth" format="dimension"/>
+        <!--背景高度-->
+        <attr name="switchButtonBgHeight" format="dimension"/>
     </declare-styleable>
 </resources>

@@ -3,4 +3,28 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="color_d5d4d4">#d5d4d3</color>
+    <color name="color_edeff0">#edeff0</color>
+    <color name="color_f9e309">#f9e309</color>
+    <color name="color_fc3b3f">#fc3b3f</color>
+    <color name="color_f85b50">#f85b50</color>
+    <color name="color_f76257">#f76257</color>
+    <color name="color_ffb21d">#ffb21d</color>
+    <color name="color_4f6ba5">#4f6ba5</color>
+    <color name="color_ffb619">#ffb619</color>
+    <color name="color_82aeff">#82aeff</color>
+    <color name="color_4978ff">#4978ff</color>
+    <color name="color_fff83a">#fff83a</color>
+    <color name="color_d6a756">#d6a756</color>
+    <color name="color_39383D">#39383D</color>
+    <color name="color_fbbf5a">#fbbf5a</color>
+    <color name="color_e6e5e6">#e6e5e6</color>
+    <color name="color_a9a9a9">#a9a9a9</color>
+    <color name="color_ff5000">#ff5000</color>
+    <color name="color_ffffff">#ffffff</color>
+    <color name="color_353535">#353535</color>
+    <color name="color_c8c8c8">#c8c8c8</color>
+    <color name="color_bc9244">#bc9244</color>
+    <color name="color_7c6224">#7c6224</color>
 </resources>
