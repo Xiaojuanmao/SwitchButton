@@ -5,8 +5,9 @@ package feel.life.wonderful.library_switchbutton;
  */
 public interface ISwitchButtonView {
 
-    SwitchButton.STATE getState();
+  SwitchButton.STATE getState();
 
-    void setState(SwitchButton.STATE state);
+  void setState(SwitchButton.STATE state);
 
+  void invalidateView();
 }

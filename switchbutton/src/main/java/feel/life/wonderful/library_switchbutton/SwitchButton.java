@@ -127,4 +127,9 @@ public class SwitchButton extends View implements ISwitchButtonView {
     mState = state;
   }
 
+  @Override
+  public void invalidateView() {
+    invalidate();
+  }
+
 }

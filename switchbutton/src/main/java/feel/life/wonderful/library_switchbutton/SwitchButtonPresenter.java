@@ -1,11 +1,15 @@
 package feel.life.wonderful.library_switchbutton;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
+import android.util.Log;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.LinearInterpolator;
 
 /**
  * Created by queda on 16-9-18.
@@ -22,6 +26,9 @@ public class SwitchButtonPresenter implements ISwitchButtonPresenter {
 
   private SwitchButtonConfig mConfig;
   private ISwitchButtonView mView;
+
+  private static final float CLOSE_PERCENT = 0.0f;
+  private static final float OPEN_PERCENT = 1.0f;
 
   public SwitchButtonPresenter(ISwitchButtonView view) {
     mView = view;
@@ -68,6 +75,7 @@ public class SwitchButtonPresenter implements ISwitchButtonPresenter {
   public void onDraw(Canvas canvas) {
     int bgHeight = (int) mConfig.getmBgHeight();
     int bgWidth = (int) mConfig.getmBgWidth();
+    remixBackgroundColor();
     drawBackground(canvas, bgWidth, bgHeight);
     drawCircle(canvas);
   }
@@ -121,13 +129,24 @@ public class SwitchButtonPresenter implements ISwitchButtonPresenter {
   public void onFingerUp(float deltaX) {
     // 判断当前偏移量应该自动向开关的哪边进行回弹
     float rate = calculateRate(deltaX);
+    ValueAnimator animator;
     if (rate < 0.5f) {
       // close回弹
-
+      animator = ValueAnimator.ofObject(new CircleDeltaXEvaluator(), deltaX, mMaxLeftDelta);
     } else {
       // open回弹
-
+      animator = ValueAnimator.ofObject(new CircleDeltaXEvaluator(), deltaX, mMaxRightDelta);
     }
+    animator.setDuration(300);
+    animator.setInterpolator(new AccelerateDecelerateInterpolator());
+    animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+      @Override
+      public void onAnimationUpdate(ValueAnimator animation) {
+        mDeltaX = animation.getAnimatedFraction();
+        mView.invalidateView();
+      }
+    });
+    animator.start();
   }
 
   /**
@@ -170,15 +189,15 @@ public class SwitchButtonPresenter implements ISwitchButtonPresenter {
     float rate;
     if (value > 0) {
       if (value == mMaxRightDelta) {
-        rate = 1.0f;
+        rate = OPEN_PERCENT;
       } else {
-        rate = value / mMaxRightDelta;
+        rate = (value - mMaxLeftDelta) / (mMaxRightDelta - mMaxLeftDelta);
       }
     } else {
       if (value == mMaxLeftDelta) {
-        rate = 0.0f;
+        rate = CLOSE_PERCENT;
       } else {
-        rate = value / mMaxLeftDelta;
+        rate = (value - mMaxRightDelta) / (mMaxLeftDelta - mMaxRightDelta);
       }
     }
     return rate;
@@ -211,6 +230,5 @@ public class SwitchButtonPresenter implements ISwitchButtonPresenter {
     }
     canvas.drawCircle(circleX, mConfig.getmLeftCirclePoint().y, mConfig.getmCircleRadius(), mCirclePaint);
   }
-
 
 }
