@@ -102,7 +102,7 @@ public class SwitchButton extends View implements ISwitchButtonView {
         break;
 
       case MotionEvent.ACTION_UP:
-        mPresenter.onFingerUp(event.getX() - mFingerDown.x);
+        mPresenter.onFingerUp();
         break;
 
       case MotionEvent.ACTION_MOVE:

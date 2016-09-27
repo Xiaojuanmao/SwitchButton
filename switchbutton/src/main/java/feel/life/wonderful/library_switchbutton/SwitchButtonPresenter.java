@@ -1,5 +1,6 @@
 package feel.life.wonderful.library_switchbutton;
 
+import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -126,24 +127,52 @@ public class SwitchButtonPresenter implements ISwitchButtonPresenter {
   }
 
   @Override
-  public void onFingerUp(float deltaX) {
+  public void onFingerUp() {
     // 判断当前偏移量应该自动向开关的哪边进行回弹
-    float rate = calculateRate(deltaX);
+    float rate = calculateRate(mDeltaX);
     ValueAnimator animator;
     if (rate < 0.5f) {
       // close回弹
-      animator = ValueAnimator.ofObject(new CircleDeltaXEvaluator(), deltaX, mMaxLeftDelta);
+      animator = ValueAnimator.ofFloat(mDeltaX, mMaxLeftDelta);
     } else {
       // open回弹
-      animator = ValueAnimator.ofObject(new CircleDeltaXEvaluator(), deltaX, mMaxRightDelta);
+      animator = ValueAnimator.ofFloat(mDeltaX, mMaxRightDelta);
     }
     animator.setDuration(300);
     animator.setInterpolator(new AccelerateDecelerateInterpolator());
     animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
       @Override
       public void onAnimationUpdate(ValueAnimator animation) {
-        mDeltaX = animation.getAnimatedFraction();
+        mDeltaX = ((Float) animation.getAnimatedValue());
         mView.invalidateView();
+      }
+    });
+    animator.addListener(new Animator.AnimatorListener() {
+      @Override
+      public void onAnimationStart(Animator animation) {
+
+      }
+
+      @Override
+      public void onAnimationEnd(Animator animation) {
+        float rate = calculateRate(mDeltaX);
+        if (rate < 0.5f) {
+          // close回弹
+          mView.setState(SwitchButton.STATE.CLOSED);
+        } else {
+          // open回弹
+          mView.setState(SwitchButton.STATE.OPENED);
+        }
+      }
+
+      @Override
+      public void onAnimationCancel(Animator animation) {
+
+      }
+
+      @Override
+      public void onAnimationRepeat(Animator animation) {
+
       }
     });
     animator.start();

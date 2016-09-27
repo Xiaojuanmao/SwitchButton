@@ -19,5 +19,5 @@ public interface ISwitchButtonPresenter {
 
     void onFingerMove(float deltaX);
 
-    void onFingerUp(float deltaX);
+    void onFingerUp();
 }
